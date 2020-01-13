@@ -1,0 +1,10 @@
+C:\Users\jongu\Desktop\capston\guiEX\guiEX\bin\Debug\guiEX.exe.config
+C:\Users\jongu\Desktop\capston\guiEX\guiEX\bin\Debug\guiEX.exe
+C:\Users\jongu\Desktop\capston\guiEX\guiEX\bin\Debug\guiEX.pdb
+C:\Users\jongu\Desktop\capston\guiEX\guiEX\obj\Debug\guiEX.csprojAssemblyReference.cache
+C:\Users\jongu\Desktop\capston\guiEX\guiEX\obj\Debug\guiEX.Form1.resources
+C:\Users\jongu\Desktop\capston\guiEX\guiEX\obj\Debug\guiEX.Properties.Resources.resources
+C:\Users\jongu\Desktop\capston\guiEX\guiEX\obj\Debug\guiEX.csproj.GenerateResource.cache
+C:\Users\jongu\Desktop\capston\guiEX\guiEX\obj\Debug\guiEX.csproj.CoreCompileInputs.cache
+C:\Users\jongu\Desktop\capston\guiEX\guiEX\obj\Debug\guiEX.exe
+C:\Users\jongu\Desktop\capston\guiEX\guiEX\obj\Debug\guiEX.pdb
