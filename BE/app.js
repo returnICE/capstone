@@ -55,6 +55,7 @@ app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/login', loginRouter);
 
 var User = require('mongoose').model('User');
 passport.serializeUser(function(user,done){
