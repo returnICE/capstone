@@ -78,3 +78,133 @@ function isLoggedIn(req, res, next){
   }
   res.json({success:false, message:"required login"});
 }
+
+
+/**
+ * @swagger
+ * tags:
+ *   - name: Users
+ *     description: 회원가입, 아이디 조회, 아이디 수정
+ *   - name: Get_id
+ *     description: 아이디조회
+ *   - name: Put_id
+ *     description: 아이디수정
+ * definitions:
+ *   Signup_request:
+ *     type: object
+ *     required:
+ *       - ID
+ *       - PW
+ *       - name
+ *       - birth
+ *       - address
+ *       - phone
+ *     properties:
+ *       ID: 
+ *         type: string
+ *         required: true
+ *       PW: 
+ *         type: string
+ *         required: true
+ *       name: 
+ *         type: string
+ *         required: true
+ *       birth: 
+ *         type: string
+ *         format: date-time
+ *         required: true
+ *       address: 
+ *         type: string
+ *         required: true
+ *       phone: 
+ *         type: string
+ *         required: true
+ *   Signup_response:
+ *     type: object
+ *     required:
+ *       - success
+ *     properties:
+ *       success:
+ *         type: boolean
+ *         description: 회원가입 성공 여부- True
+ *   Response_error:
+ *     type: object
+ *     required:
+ *       - success
+ *       - message
+ *     properties:
+ *       success:
+ *         type: boolean
+ *         description: 회원가입 성공 여부- False
+ *       message:
+ *         type: string
+ *         description: 오류 사유
+ */
+
+/**
+ * @swagger
+ *  paths:
+ *    /users:
+ *      post:
+ *        tags:
+ *        - "Users"
+ *        summary: "회원가입"
+ *        description: ""
+ *        consumes:
+ *        - "application/json"
+ *        produces:
+ *        - "application/json"
+ *        parameters:
+ *        - in: "body"
+ *          name: "body"
+ *          description: "회원가입 ID & PW 를 받고 User정보를 Return"
+ *          required: true
+ *          schema:
+ *            $ref: "#/definitions/Signup_request"
+ *        responses:
+ *          200:
+ *            description: "로그인 성공"
+ *            schema:
+ *              $ref: "#/definitions/Signup_response"
+ *          400:
+ *            description: "잘못된 데이터"
+ *            schema:
+ *              $ref: "#/definitions/Response_error"
+ *          500:
+ *            description: "로그인 오류 & 실패"
+ *            schema:
+ *              $ref: "#/definitions/Response_error"
+ *    /logout:
+ *      post:
+ *        tags:
+ *        - "Logout"
+ *        summary: "Logout process"
+ *        consumes:
+ *        - "application/json"
+ *        produces:
+ *        - "application/json"
+ *        parameters:
+ *        - in: "body"
+ *          name: "body"
+ *          description: "로그인 session 삭제"
+ *          required: false
+ *        responses:
+ *          200:
+ *            description: "로그아웃 성공"
+ *            example:
+ *              success:
+ *                type: boolean
+ *            schema:
+ *            -  success: 
+ *                 type: boolean
+ *          400:
+ *            description: "잘못된 데이터"
+ *            schema:
+ *              $ref: "#/definitions/Response_error"
+ *          500:
+ *            description: "로그아웃 오류 & 실패"
+ *            schema:
+ *              $ref: "#/definitions/Response_error"
+
+ */
+
