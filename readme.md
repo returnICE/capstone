@@ -20,6 +20,11 @@ cd backend
 npm start
 ```
 
+## requirement
+
+android studio
+nodejs
+
 ## Author
 
 👤 **권인우 이제찬 정성원 하태민**
