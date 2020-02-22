@@ -23,6 +23,7 @@ npm start
 ## requirement
 
 android studio
+
 nodejs
 
 ## Author
