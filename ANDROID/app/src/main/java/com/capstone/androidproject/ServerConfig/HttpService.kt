@@ -1,6 +1,7 @@
 package com.capstone.androidproject.ServerConfig
 
 import com.capstone.androidproject.Response.LoginResponse
+import com.capstone.androidproject.Response.SignupResponse
 import com.capstone.androidproject.Response.Success
 import retrofit2.Call
 import retrofit2.http.*
@@ -12,7 +13,22 @@ interface HttpService {
     @FormUrlEncoded
     @POST("/login")
     fun postLoginRequest(@Field("ID")ID: String,
-                        @Field("PW")PW: String): Call<LoginResponse>
+                        @Field("PW")PW: String)
+            :Call<LoginResponse>
+
+    @FormUrlEncoded
+    @POST("/users")
+    fun postSignupRequest(@Field("ID")ID: String,
+                          @Field("PW")PW: String,
+                          @Field("name")name: String,
+                          @Field("birth")birth: String,
+                          @Field("address")address: String,
+                          @Field("phone")phone: String
+                          )
+            :Call<SignupResponse>
+
+    @GET("/users/:id")
+    fun getRetrieveRequest():Call<Success>
 
     @GET("/login/logout")
     fun getLogoutRequest():Call<Success>
