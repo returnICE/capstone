@@ -12,26 +12,16 @@ class UserPreference (context: Context){
     val PREF_KEY_ADDRESS="address"
     val PREF_KEY_PHONE="PHONE"
 
+    val PREF_KEY_TOKEN="token"
+
     var prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME,0)
 
-    var ID: String
-        get() = prefs.getString(PREF_KEY_ID,"")
-        set(value) = prefs.edit().putString(PREF_KEY_ID,value).apply()
-    var PW: String
-        get() = prefs.getString(PREF_KEY_PW,"")
-        set(value) = prefs.edit().putString(PREF_KEY_PW,value).apply()
     var name: String
         get() = prefs.getString(PREF_KEY_NAME,"")
         set(value) = prefs.edit().putString(PREF_KEY_NAME,value).apply()
-    var birth: String
-        get() = prefs.getString(PREF_KEY_BIRTH,"")
-        set(value) = prefs.edit().putString(PREF_KEY_BIRTH,value).apply()
-    var address: String
-        get() = prefs.getString(PREF_KEY_ADDRESS,"")
-        set(value) = prefs.edit().putString(PREF_KEY_ADDRESS,value).apply()
-    var phone: String
-        get() = prefs.getString(PREF_KEY_PHONE,"")
-        set(value) = prefs.edit().putString(PREF_KEY_PHONE,value).apply()
+    var token: String
+        get() = prefs.getString(PREF_KEY_TOKEN,"")
+        set(value) = prefs.edit().putString(PREF_KEY_TOKEN,value).apply()
 
     fun clear(){
         prefs.edit().clear().apply()
