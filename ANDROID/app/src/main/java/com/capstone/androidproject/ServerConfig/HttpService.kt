@@ -3,6 +3,7 @@ package com.capstone.androidproject.ServerConfig
 import com.capstone.androidproject.Response.LoginResponse
 import com.capstone.androidproject.Response.SignupResponse
 import com.capstone.androidproject.Response.Success
+import com.capstone.androidproject.Response.UserData
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -32,6 +33,9 @@ interface HttpService {
 
     @GET("/login/logout")
     fun getLogoutRequest():Call<Success>
+
+    @GET("/login")
+    fun getGetUserRequest(@Header("x-access-token")token: String): Call<LoginResponse>
 
     /*
     @GET("/경로")

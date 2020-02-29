@@ -11,8 +11,6 @@ import com.capstone.androidproject.Response.Success
 import com.capstone.androidproject.ServerConfig.ServerConnect
 import com.capstone.androidproject.SharedPreferenceConfig.App
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.textId
-import kotlinx.android.synthetic.main.activity_main.textPassword
 import kotlinx.android.synthetic.main.activity_signup.*
 
 import org.jetbrains.anko.startActivity
@@ -70,12 +68,7 @@ class SignupActivity : AppCompatActivity() {
                     Toast.makeText(this@SignupActivity, "회원가입 실패2", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@SignupActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
-                    App.prefs.ID = user?.ID.toString()
-                    App.prefs.PW = pw
-                    App.prefs.name = user?.name.toString()
-                    App.prefs.birth = user?.birth.toString()
-                    App.prefs.address = user?.address.toString()
-                    App.prefs.phone = user?.phone.toString() // 로그인 성공하면 shared_Preference에 유저정보 저장
+                    App.prefs.name = user?.name.toString() // 로그인 성공하면 shared_Preference에 유저정보 저장
                 }
             }
         })
