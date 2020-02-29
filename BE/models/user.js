@@ -8,8 +8,8 @@ var userSchema = mongoose.Schema({
     birth: {type: Date, required: true},
     address: {type: String, required: true},
     phone: {type: String, required: true},
-    interestlist: [{type: String, required: true}],
-    buylist: [{type: String, required: true}],
+    interestlist: [{type: String, required: false}],
+    buylist: [{type: String, required: false}],
 });
 
 userSchema.pre("save",function(next){

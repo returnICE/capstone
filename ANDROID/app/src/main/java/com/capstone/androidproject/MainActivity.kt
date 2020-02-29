@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //회원가입 페이지 이동
         val go_intent = findViewById(R.id.btnSignup) as Button
             go_intent.setOnClickListener{
                 val intent = Intent(this@MainActivity, SignupActivity::class.java)
