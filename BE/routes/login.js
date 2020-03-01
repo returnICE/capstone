@@ -59,11 +59,11 @@ router.post('/', function (req, res, next) {
           user: user
         };
         var secretOrPrivateKey = "abcd"
-        var options = { expiresIn: 60 * 10 };// 10분 동안만 로그인 유효 -> 후에 수정 
+        var options = { expiresIn: 60 * 60 * 24 };// 10분 동안만 로그인 유효 -> 후에 수정 
         jwt.sign(payload, secretOrPrivateKey, options, function (err, token) {
           if (err) return res.json({ success: false, message: "jwt인증 토큰 생성에러" });
 
-          return res.send({ success: true, user, token });
+          return res.send({ success: true, token });
         });
       });
     })(req, res, next);

@@ -1,109 +1,72 @@
 package com.capstone.androidproject
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.Toast
-import com.capstone.androidproject.Response.LoginResponse
-import com.capstone.androidproject.Response.Success
-import com.capstone.androidproject.Response.UserData
-import com.capstone.androidproject.ServerConfig.ServerConnect
-import com.capstone.androidproject.SharedPreferenceConfig.App
-import kotlinx.android.synthetic.main.activity_login.*
+import android.view.MenuItem
+import com.capstone.androidproject.Fragment.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
-import org.jetbrains.anko.startActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
-
 class MainActivity : AppCompatActivity() {
+
+    private val frag1: HomeFragment =
+        HomeFragment()
+    private val frag2: CategoryFragment =
+        CategoryFragment()
+    private val frag3: SearchFragment =
+        SearchFragment()
+    private val frag4: AlertFragment =
+        AlertFragment()
+    private val frag5: MypageFragment =
+        MypageFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //회원가입 페이지 이동
-
-
-        isLogin()
-
-        imgLogin.setOnClickListener{
-            startActivity<LoginActivity>()
-
-            finishAffinity()
-        }
-        imgLogout.setOnClickListener{
-            App.prefs.clear()
-            logout()
-            isLogin()
-        }
-
-        getUser.setOnClickListener {
-            getUserInfo()
-        }
-    }
-    fun logout() {
-        val serverConnect = ServerConnect(this)
-        val server = serverConnect.conn()
-
-        server.getLogoutRequest().enqueue(object : Callback<Success> {
-            override fun onFailure(call: Call<Success>?, t: Throwable?) {
-                Toast.makeText(this@MainActivity, "로그아웃 실패", Toast.LENGTH_SHORT).show()
-                println(t?.message.toString())
-            }
-
-            override fun onResponse(call: Call<Success>?, response: Response<Success>?) {
-                val succ = response?.body()
-
-                if (succ?.success == false) {
-                    Toast.makeText(this@MainActivity, "로그아웃 실패", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this@MainActivity, "로그아웃 성공", Toast.LENGTH_SHORT).show()
+        bottomNavi.setOnNavigationItemSelectedListener(object :
+            BottomNavigationView.OnNavigationItemSelectedListener {
+            override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+                when (menuItem.getItemId()) {
+                    R.id.action_home -> setFrag(0)
+                    R.id.action_category -> setFrag(1)
+                    R.id.action_search -> setFrag(2)
+                    R.id.action_alert -> setFrag(3)
+                    R.id.action_mypage -> setFrag(4)
                 }
+                return true
             }
         })
+
+        setFrag(0) // 첫 프래그먼트 화면 지정
     }
 
-    fun isLogin(){
-        if (App.prefs.token != "") {
-            imgLogin.setVisibility(View.GONE)
-            imgLogout.setVisibility(View.VISIBLE)
-            println("로그인됨")
-        }
-        else{
-            imgLogout.setVisibility(View.GONE)
-            imgLogin.setVisibility(View.VISIBLE)
-            println("로그아웃됨")
-        }
-    }
-
-    fun getUserInfo(){
-        val serverConnect = ServerConnect(this)
-        val server = serverConnect.conn()
-
-        val token=App.prefs.token
-
-        server.getGetUserRequest(token).enqueue(object : Callback<LoginResponse> {
-
-            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "로그인 실패2", Toast.LENGTH_SHORT).show()
-
+    private fun setFrag(n: Int) {
+        val fm = supportFragmentManager
+        val ft = fm.beginTransaction()
+        when (n) {
+            0 -> {
+                ft.replace(R.id.Main_Frame, frag1)
+                ft.commit()
             }
 
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                val user = response?.body()?.user
-
-                App.prefs.name = user?.name.toString()
-
-                userInfo.setText(user?.ID.toString())
-                userInfo.setText(user?.name.toString())
+            1 -> {
+                ft.replace(R.id.Main_Frame, frag2)
+                ft.commit()
             }
 
-        })
+            2 -> {
+                ft.replace(R.id.Main_Frame, frag3)
+                ft.commit()
+            }
+            3 -> {
+                ft.replace(R.id.Main_Frame, frag4)
+                ft.commit()
+            }
+            4 -> {
+                ft.replace(R.id.Main_Frame, frag5)
+                ft.commit()
+            }
+        }
     }
 }
-
