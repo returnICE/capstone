@@ -19,13 +19,15 @@ class SplashActivity : AppCompatActivity() {
 
         if (App.prefs.token != "") {
             login(App.prefs.token)
-        }//로그인 돼있으면 바로 로그인
+            SystemClock.sleep(300)
+        }
+        //로그인 돼있으면 바로 로그인
         //shared preference에 정보 저장돼있으면 로그인 돼있는걸로 판단함
 
-        SystemClock.sleep(300)
-
-        startActivity<MainActivity>()
-        finish()
+        else{
+            startActivity<LoginActivity>()
+            finish()
+        }
     }
     fun login(token: String) {
         val serverConnect = ServerConnect(this)
@@ -34,6 +36,8 @@ class SplashActivity : AppCompatActivity() {
         server.getGetUserRequest(token).enqueue(object : Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
                 Toast.makeText(this@SplashActivity, "로그인 실패1", Toast.LENGTH_SHORT).show()
+                startActivity<LoginActivity>()
+                finish()
             }
 
             override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
@@ -41,8 +45,12 @@ class SplashActivity : AppCompatActivity() {
 
                 if (success == false) {
                     Toast.makeText(this@SplashActivity, "로그인 실패2", Toast.LENGTH_SHORT).show()
+                    startActivity<LoginActivity>()
+                    finish()
                 } else {
                     Toast.makeText(this@SplashActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
+                    startActivity<MainActivity>()
+                    finish()
                 }
             }
         })

@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import com.capstone.androidproject.Response.LoginResponse
+import com.capstone.androidproject.Response.TokenResponse
+import com.capstone.androidproject.ServerConfig.HttpService
 import com.capstone.androidproject.ServerConfig.ServerConnect
 import com.capstone.androidproject.SharedPreferenceConfig.App
 import kotlinx.android.synthetic.main.activity_login.*
@@ -13,11 +15,6 @@ import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
-
 
 class LoginActivity : AppCompatActivity() {
 
@@ -33,8 +30,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener {
-            var id = textId.text.toString()
-            var pw = textPassword.text.toString()
+            val id = textId.text.toString()
+            val pw = textPassword.text.toString()
             login(id, pw)
         }
     }
@@ -43,17 +40,36 @@ class LoginActivity : AppCompatActivity() {
         val serverConnect = ServerConnect(this)
         val server = serverConnect.conn()
 
-        server.postLoginRequest(id, pw).enqueue(object : Callback<LoginResponse> {
-            override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
+        server.postLoginRequest(id, pw).enqueue(object : Callback<TokenResponse> {
+            override fun onFailure(call: Call<TokenResponse>?, t: Throwable?) {
                 Toast.makeText(this@LoginActivity, "로그인 실패1", Toast.LENGTH_SHORT).show()
-                println(t?.message.toString())
             }
 
-            override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
-                val success = response?.body()?.success
-                val user = response?.body()?.user
-                val token = response?.body()?.token
+            override fun onResponse(call: Call<TokenResponse>?, response: Response<TokenResponse>) {
+                val success = response.body()?.success
+                val token = response.body()!!.token
                 println(token)
+
+                if (success == false) {
+                    Toast.makeText(this@LoginActivity, "로그인 실패2", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
+                    App.prefs.token = token.toString()// 로그인 성공하면 shared_Preference에 유저정보 저장
+
+                    getUserInfo(server, token)
+                }
+            }
+        })
+    }
+    fun getUserInfo(server:HttpService, token: String){
+        server.getGetUserRequest(token).enqueue(object : Callback<LoginResponse> {
+            override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
+                Toast.makeText(this@LoginActivity, "로그인 실패1", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>) {
+                val success = response.body()?.success
+                val user = response.body()?.user
 
                 if (success == false) {
                     Toast.makeText(this@LoginActivity, "로그인 실패2", Toast.LENGTH_SHORT).show()
@@ -61,22 +77,13 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
                     App.prefs.name = user?.name.toString()
 
-                    App.prefs.token = token.toString()// 로그인 성공하면 shared_Preference에 유저정보 저장
-
-
-                    onBackPressed()
+                    startActivity<MainActivity>()
                     finish()
                 }
             }
         })
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-
-        startActivity(Intent(this, MainActivity::class.java))
-
-    }
 }
 
 
