@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".SignupDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,11 +17,12 @@
             android:orientation="vertical"
             android:background="@color/colorPrimary"
             >
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="LOG IN"
+                android:text="Sign Up"
                 android:textColor="#ffffff"
                 android:textSize="30dp"
                 android:textStyle="bold"
@@ -45,30 +46,83 @@
 
 
             </LinearLayout>
+
+
             <EditText
                 android:inputType="text"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:hint="ID"
+                android:hint="Name"
                 android:layout_gravity="center"
                 android:padding="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
-                android:id="@+id/textId"
+                android:id="@+id/textName"
                 android:layout_marginTop="10dp"
                 />
             <EditText
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="Birth"
                 android:layout_gravity="center"
                 android:padding="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
-                android:id="@+id/textPassword"
+                android:id="@+id/textBirth"
                 android:layout_marginTop="10dp"
                 />
+            <EditText
+                android:inputType="text"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:id="@+id/textAddress"
+                android:layout_marginTop="10dp"
+                />
+            <EditText
+                android:inputType="text"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:hint="Phone number"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:id="@+id/textPhone"
+                android:layout_marginTop="10dp"
+                />
+            <RadioGroup
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/genderGroup"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                >
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="male"
+                    android:id="@+id/toggleGenderMan"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    />
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="female"
+                    android:id="@+id/toggleGenderWoman"
+                    android:layout_weight="1"
+                    />
+            </RadioGroup>
+
+
             <Button
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -76,35 +130,14 @@
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimary"
-                android:text="Log In"
+                android:text="Register"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnRegister"
                 />
-            <Button
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:background="@color/colorPrimary"
-                android:text="Sign Up"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:id="@+id/btnSignup"
-                />
-            <Button
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:background="@color/colorPrimary"
-                android:text="register test"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:id="@+id/btnTest"
-                />
+
         </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>
