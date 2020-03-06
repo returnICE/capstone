@@ -12,6 +12,12 @@ router.post('/', checkUserRegValidation, function(req, res, next){
   });
 });// user 생성
 
+router.get('/check',checkId, function (req, res){
+  //print(req.query.id)
+  console.log("test log1")
+  res.json({success:true}); 
+}); // ID 중복체크
+
 router.get('/:id', isLoggedIn, function(req, res, next) {
   User.findById(req.params.id,function(err,user){
     if(err) return res.json({success: false, message: err});
@@ -77,6 +83,32 @@ function isLoggedIn(req, res, next){
     return next();
   }
   res.json({success:false, message:"required login"});
+}
+
+function checkId(req, res, next){
+  var isValid=true;
+
+  console.log(req.query.ID)
+
+  async.waterfall(
+      [function(callback){
+          User.findOne({ID: req.query.ID},
+              function(err,user){
+                  if(user){
+                      isValid=false;
+                  }
+                  callback(null,isValid);
+              }
+          );
+      }], function(err,isValid){
+          if(err) return res.json({success:false, message:err});
+          if(isValid){
+              return next();
+          } else{
+              res.json({success:false, message:"already ID or email"});
+          }
+      }
+  );
 }
 
 

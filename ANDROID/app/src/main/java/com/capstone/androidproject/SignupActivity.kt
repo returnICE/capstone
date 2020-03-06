@@ -77,25 +77,31 @@ class SignupActivity : AppCompatActivity() {
     fun checkId(id: String){
         val serverConnect = ServerConnect(this)
         val server = serverConnect.conn()
-
-        server.getRetrieveRequest().enqueue(object
-            :Callback<Success>{
-            override fun onFailure(call: Call<Success>, t: Throwable) {
-                Toast.makeText(this@SignupActivity, "중복체크 실패1", Toast.LENGTH_SHORT).show()
-                println(t?.message.toString())
-            }
-
-            override fun onResponse(call: Call<Success>, response: Response<Success>) {
-                val succ = response?.body()
-
-                if (succ?.success == false) {
-                    Toast.makeText(this@SignupActivity, "중복체크 실패2", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this@SignupActivity, "중복입니다", Toast.LENGTH_SHORT).show()
+        if(id == ""){
+            Toast.makeText(this@SignupActivity, "id를 입력해 주세요", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            server.getCheckRequest(id).enqueue(object
+                : Callback<Success> {
+                override fun onFailure(call: Call<Success>, t: Throwable) {
+                    Toast.makeText(this@SignupActivity, "중복체크 실패1", Toast.LENGTH_SHORT).show()
+                    println(t?.message.toString())
                 }
 
-            }
 
-        })
+                override fun onResponse(call: Call<Success>, response: Response<Success>) {
+                    val succ = response?.body()
+
+                    if (succ?.success == false) {
+                        Toast.makeText(this@SignupActivity, "중복입니다", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@SignupActivity, "사용 가능한 ID입니다", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                }
+
+            })
+        }
     }
 }

@@ -28,6 +28,9 @@ interface HttpService {
     @GET("/users/:id")
     fun getRetrieveRequest():Call<Success>
 
+    @GET("/users/check")
+    fun getCheckRequest(@Query("ID")ID: String):Call<Success>
+
     @GET("/login/logout")
     fun getLogoutRequest():Call<Success>
 
