@@ -22,17 +22,20 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
-        val go_intent = findViewById(R.id.btnSignup) as Button
-        go_intent.setOnClickListener{
-            val intent = Intent(this@LoginActivity, SignupActivity::class.java)
-            startActivity(intent)
+        btnSignup.setOnClickListener{
+            val signupIntent = Intent(this@LoginActivity, SignupActivity::class.java)
+            startActivity(signupIntent)
         }
-
         btnLogin.setOnClickListener {
             val id = textId.text.toString()
             val pw = textPassword.text.toString()
             login(id, pw)
+        }
+
+        //테스트용 버튼
+        btnTest.setOnClickListener{
+            val testIntent = Intent(this@LoginActivity, ItemRegisterActivity::class.java)
+            startActivity(testIntent)
         }
     }
 
