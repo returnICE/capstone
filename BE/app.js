@@ -9,6 +9,7 @@ var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
 
+
 //DB 연결
 var mongoose = require('mongoose');
 mongoose.connect("mongodb+srv://turrymall:turrymall@cluster0-7wnzw.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
@@ -28,7 +29,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var itemsRouter = require('./routes/items');
-
+var uploadRouter = require('./routes/upload');
 var app = express();
 
 // view engine setup
@@ -59,7 +60,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/items', itemsRouter);
-
+app.use('/upload', uploadRouter);
 // Swagger setting
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
