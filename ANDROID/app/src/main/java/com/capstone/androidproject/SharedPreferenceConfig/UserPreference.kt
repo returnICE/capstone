@@ -19,6 +19,9 @@ class UserPreference (context: Context){
     var name: String
         get() = prefs.getString(PREF_KEY_NAME,"")
         set(value) = prefs.edit().putString(PREF_KEY_NAME,value).apply()
+    var address: String
+        get() = prefs.getString(PREF_KEY_ADDRESS,"")
+        set(value) = prefs.edit().putString(PREF_KEY_ADDRESS,value).apply()
     var token: String
         get() = prefs.getString(PREF_KEY_TOKEN,"")
         set(value) = prefs.edit().putString(PREF_KEY_TOKEN,value).apply()
