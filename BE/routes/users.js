@@ -117,10 +117,6 @@ function checkId(req, res, next){
  * tags:
  *   - name: Users
  *     description: 회원가입, 아이디 조회, 아이디 수정
- *   - name: Get_id
- *     description: 아이디조회
- *   - name: Put_id
- *     description: 아이디수정
  * definitions:
  *   Signup_request:
  *     type: object
@@ -206,37 +202,5 @@ function checkId(req, res, next){
  *            description: "로그인 오류 & 실패"
  *            schema:
  *              $ref: "#/definitions/Response_error"
- *    /logout:
- *      post:
- *        tags:
- *        - "Logout"
- *        summary: "Logout process"
- *        consumes:
- *        - "application/json"
- *        produces:
- *        - "application/json"
- *        parameters:
- *        - in: "body"
- *          name: "body"
- *          description: "로그인 session 삭제"
- *          required: false
- *        responses:
- *          200:
- *            description: "로그아웃 성공"
- *            example:
- *              success:
- *                type: boolean
- *            schema:
- *            -  success: 
- *                 type: boolean
- *          400:
- *            description: "잘못된 데이터"
- *            schema:
- *              $ref: "#/definitions/Response_error"
- *          500:
- *            description: "로그아웃 오류 & 실패"
- *            schema:
- *              $ref: "#/definitions/Response_error"
-
  */
 
