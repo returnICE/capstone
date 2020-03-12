@@ -1,6 +1,7 @@
 package com.capstone.androidproject.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,12 @@ import com.google.android.material.tabs.TabLayout
 import com.capstone.androidproject.HomeTab.ContentsPagerAdapter
 import com.capstone.androidproject.R
 import androidx.viewpager.widget.ViewPager
+import com.capstone.androidproject.AddressSetting.MyAddressSettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
+import com.capstone.androidproject.MainActivity
+
+
 
 class HomeFragment : Fragment() {
 
@@ -23,16 +29,22 @@ class HomeFragment : Fragment() {
 
         val v:View = inflater.inflate(R.layout.fragment_home, container, false)
 
-        setActionBar()
+        val address = arguments?.getString("myAddress")!!
+
+        setActionBar(address)
         setMyInfo(v)
         setContent(v)
 
         return v
     }
 
-    fun setActionBar(){// 액션 바 설정
-        activity!!.titleText.setText("주소")
+    fun setActionBar(address:String){// 액션 바 설정
+        activity!!.titleText.setText(address)
         activity!!.locationIcon.visibility = View.VISIBLE
+        activity!!.titleText.setOnClickListener {
+            activity!!.startActivity<MyAddressSettingActivity>()
+            (context as MainActivity).overridePendingTransition(R.anim.slide_up, R.anim.slide_stay)
+        }
     }
 
     fun setMyInfo(v:View){ // 이름, 보유 포인트
