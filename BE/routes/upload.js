@@ -27,9 +27,10 @@ const upload = multer({
   })
 });
 
-router.post('/', upload.single('imgFile'), (req, res) => {
+router.post('/', upload.array('imgFile'), (req, res) => {
   try {
-    res.json({ success: true, location: req.file.location });
+    var location= req.files.map(file=>file.location)
+    res.json({ success: true, location });
   } catch (err) {
     console.log(err);
     response(res, 500, "서버 에러")
