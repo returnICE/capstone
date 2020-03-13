@@ -25,6 +25,18 @@ interface HttpService {
                           )
             :Call<SignupResponse>
 
+    @FormUrlEncoded
+    @POST("/items")
+    fun postItemRegisterRequest(@Field("manufactdate")manufactdate: String,
+                                @Field("expirationdate")expirationdate: String,
+                                @Field("type")type: String,
+                                @Field("information")information: String,
+                                @Field("originprice")originprice: String,
+                                @Field("saleprice")saleprice: String
+    )
+            :Call<SignupResponse>
+
+
     @GET("/users/:id")
     fun getRetrieveRequest():Call<Success>
 

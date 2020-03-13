@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="URL">http://192.168.0.2:3000/</string>
+    //56.1 태민
+    <string name="URL">http://192.168.56.1:3000/</string>
 </resources>

@@ -59,12 +59,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center">
+
                 <ImageView
                     android:id = "@+id/imgPhoto"
                     android:layout_width="280dp"
                     android:layout_height="280dp"
                     android:layout_gravity="center"
-                    android:adjustViewBounds="true"/>
+                    android:adjustViewBounds="true"
+
+                    />
+
 
             </LinearLayout>
 
