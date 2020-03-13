@@ -6,12 +6,12 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import androidx.recyclerview.widget.*
+import com.capstone.androidproject.RegisterItem.photoAdapter
+import com.capstone.androidproject.RegisterItem.photoList
 import kotlinx.android.synthetic.main.activity_item_register_photo.*
-import kotlinx.android.synthetic.main.activity_item_register_photo.view.*
+import kotlinx.android.synthetic.main.photo_list.*
 import kotlinx.android.synthetic.main.activity_signup.btnNext
-import kotlinx.android.synthetic.main.activity_signup.textId
-import kotlinx.android.synthetic.main.activity_signup.textPassword
-import org.jetbrains.anko.imageBitmap
 
 import java.lang.Exception
 
@@ -19,9 +19,31 @@ import java.lang.Exception
 class ItemRegisterActivity : AppCompatActivity() {
 
     val OPEN_GALLERY = 1
+    //val photoArray = arrayListOf<photoList>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_register_photo)
+
+        var photoArray = arrayListOf<photoList>()
+
+
+        btnSelectPhoto.setOnClickListener {
+            openGallery()
+/*
+            val pAdapter = photoAdapter(this, photoArray)
+            recyclerViewPhoto.adapter = pAdapter
+
+            val lm = LinearLayoutManager(this)
+            recyclerViewPhoto.layoutManager = lm
+            recyclerViewPhoto.setHasFixedSize(true)
+
+ */
+        }
+
+
+
+
+
 
         btnNext.setOnClickListener{
 
@@ -34,9 +56,6 @@ class ItemRegisterActivity : AppCompatActivity() {
         }
 
 
-        btnSelectPhoto.setOnClickListener {
-            openGallery()
-        }
     }
     fun openGallery(){
         val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -45,7 +64,7 @@ class ItemRegisterActivity : AppCompatActivity() {
     }
 
     @Override
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent? ) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(resultCode == Activity.RESULT_OK){
