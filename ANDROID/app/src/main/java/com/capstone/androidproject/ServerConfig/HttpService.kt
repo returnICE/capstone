@@ -36,6 +36,10 @@ interface HttpService {
     )
             :Call<SignupResponse>
 
+    @FormUrlEncoded
+    @POST("/upload")
+    fun postItemImgRequest(@Field("imgFile")imgFile: String)
+            :Call<Success>
 
     @GET("/users/:id")
     fun getRetrieveRequest():Call<Success>
