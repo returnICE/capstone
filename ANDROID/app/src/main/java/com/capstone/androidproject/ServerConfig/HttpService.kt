@@ -25,6 +25,9 @@ interface HttpService {
                           )
             :Call<SignupResponse>
 
+    @POST("/uploads")
+    fun
+
     @GET("/users/:id")
     fun getRetrieveRequest():Call<Success>
 
