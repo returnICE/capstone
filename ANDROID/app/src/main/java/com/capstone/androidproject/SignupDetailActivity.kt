@@ -1,8 +1,11 @@
 package com.capstone.androidproject
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.DatePicker
+import android.widget.TextView
 import android.widget.Toast
 import com.capstone.androidproject.Response.SignupResponse
 import com.capstone.androidproject.Response.Success
@@ -17,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_signup_detail.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 
 class SignupDetailActivity : AppCompatActivity() {
@@ -26,6 +30,24 @@ class SignupDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup_detail)
 
 
+        //생년월일 입력
+        btnDate.setOnClickListener { view->
+            var calendar = Calendar.getInstance()
+            var year = calendar.get(Calendar.YEAR)
+            var month = calendar.get(Calendar.MONTH)
+            var day = calendar.get(Calendar.DAY_OF_MONTH)
+
+
+            var date_listener = object : DatePickerDialog.OnDateSetListener{
+                override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+                    textBirth.text = "${year}-${month + 1}-${dayOfMonth}"//년월일 순
+                }
+
+            }
+            var builder = DatePickerDialog(this, date_listener, year, month, day)
+            builder.show()
+
+        }
 
         btnRegister.setOnClickListener() {
 
@@ -43,6 +65,7 @@ class SignupDetailActivity : AppCompatActivity() {
         }
 
     }
+
 
     fun signup(id: String, pw: String, name: String, birth: String, address: String, phone: String) {
         val serverConnect = ServerConnect(this)
