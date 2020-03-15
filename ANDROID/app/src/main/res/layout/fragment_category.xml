@@ -14,6 +14,7 @@
         android:weightSum="15">
 
         <LinearLayout
+            android:id="@+id/button_line1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -22,29 +23,29 @@
 
             <ImageView
                 android:id="@+id/category_0"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/category_0" />
 
             <ImageView
                 android:id="@+id/category_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/category_1" />
 
             <ImageView
                 android:id="@+id/category_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/category_2" />
 
             <ImageView
                 android:id="@+id/category_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/category_3" />
         </LinearLayout>
@@ -58,29 +59,29 @@
 
             <ImageView
                 android:id="@+id/category_8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/category_8" />
 
             <ImageView
                 android:id="@+id/category_9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/category_9" />
 
             <ImageView
                 android:id="@+id/category_10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/category_10" />
 
             <ImageView
                 android:id="@+id/category_11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/category_11" />
         </LinearLayout>
@@ -94,29 +95,29 @@
 
             <ImageView
                 android:id="@+id/category_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/category_4" />
 
             <ImageView
                 android:id="@+id/category_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/category_5" />
 
             <ImageView
                 android:id="@+id/category_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/category_6" />
 
             <ImageView
                 android:id="@+id/category_7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/category_7" />
         </LinearLayout>

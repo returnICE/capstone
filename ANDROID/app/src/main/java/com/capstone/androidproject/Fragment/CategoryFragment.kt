@@ -13,6 +13,8 @@ import com.capstone.androidproject.HomeTab.ItemRecyclerAdapter
 import com.capstone.androidproject.R
 import kotlinx.android.synthetic.main.activity_main.*
 import com.capstone.androidproject.Response.ItemData
+import com.capstone.androidproject.ServerConfig.HttpService
+import com.capstone.androidproject.ServerConfig.ServerConnect
 
 class CategoryFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,7 @@ class CategoryFragment : Fragment() {
 
         setActionBar()
         val v:View = inflater.inflate(R.layout.fragment_category, container, false)
+        val rv : RecyclerView = v.findViewById(R.id.recycler)
         var textList = ArrayList<String>()
         setTextList(textList)
 
@@ -51,7 +54,7 @@ class CategoryFragment : Fragment() {
 
 
                 val adapter = ItemRecyclerAdapter(items)
-                val rv : RecyclerView = v.findViewById(R.id.recycler)
+
                 rv.adapter = adapter
                 rv.addItemDecoration(
                     DividerItemDecoration(activity!!.applicationContext, DividerItemDecoration.VERTICAL)
@@ -60,6 +63,11 @@ class CategoryFragment : Fragment() {
             }
         }
         return v
+    }
+
+    fun connect(){
+        val serverConnect = ServerConnect(activity!!.applicationContext)
+        val server = serverConnect.conn()
     }
 
     fun setTextList(textList : ArrayList<String>){
