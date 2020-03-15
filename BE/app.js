@@ -23,6 +23,7 @@ db.on("error", function (err) {
 
 require('./models/user.js');
 require('./models/item.js');
+require('./models/reserve.js');
 
 //라우팅
 var indexRouter = require('./routes/index');
@@ -30,6 +31,7 @@ var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var itemsRouter = require('./routes/items');
 var uploadRouter = require('./routes/upload');
+var reserveRouter = require('./routes/reserve');
 var app = express();
 
 // view engine setup
@@ -61,6 +63,7 @@ app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/items', itemsRouter);
 app.use('/upload', uploadRouter);
+app.use('/reserve', reserveRouter);
 // Swagger setting
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -75,7 +78,7 @@ const swaggerDefinition = {
 };
 const options = {
   swaggerDefinition,
-  apis: ['./routes/index.js', './routes/login.js', './routes/users.js','./routes/items.js']
+  apis: ['./routes/index.js', './routes/login.js', './routes/users.js','./routes/items.js','./routes/reserve.js']
 };
 const swaggerSpec = swaggerJSDoc(options);
 // Swagger setting fin

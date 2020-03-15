@@ -9,7 +9,7 @@ var userSchema = mongoose.Schema({
     address: {type: String, required: true},
     phone: {type: String, required: true},
     interestlist: [{type: String, required: false}],
-    buylist: [{type: String, required: false}],
+    reserve_id: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reserve' }],
 });
 
 userSchema.pre("save",function(next){
