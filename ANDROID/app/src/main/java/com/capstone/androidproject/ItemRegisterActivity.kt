@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.*
 import com.capstone.androidproject.RegisterItem.photoAdapter
@@ -31,43 +32,28 @@ class ItemRegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_register_photo)
 
-        var photoArray = arrayListOf<photoList>()
-
-
         btnSelectPhoto.setOnClickListener {
             openGallery()
-/*
-            val pAdapter = photoAdapter(this, photoArray)
-            recyclerViewPhoto.adapter = pAdapter
 
-            val lm = LinearLayoutManager(this)
-            recyclerViewPhoto.layoutManager = lm
-            recyclerViewPhoto.setHasFixedSize(true)
-
- */
         }
-
-
-
-
-
 
         btnNext.setOnClickListener{
 
             //var photo = 이미지 보내기 변수 추가
-            val nextIntent = Intent(this@ItemRegisterActivity, SignupDetailActivity::class.java)
+            val nextIntent = Intent(this@ItemRegisterActivity, LoginActivity::class.java)
 
             //다음 activity로 img전송필요
 
             startActivity(nextIntent)
         }
-
-
     }
+
     fun openGallery(){
         val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.setType("image/*")
         startActivityForResult(intent, OPEN_GALLERY)
+        //var currentURL = intent.getStringExtra("imgURL")
+        //textTest.text = "$currentURL"
     }
 
     @Override
@@ -79,8 +65,12 @@ class ItemRegisterActivity : AppCompatActivity() {
                 var currentImageURL: Uri? = data?.data
 
                 try{
+
                     val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, currentImageURL)
                     imgPhoto.setImageBitmap(bitmap)
+                    Log.i("TAG", "$currentImageURL")
+                    textTest.text = "$currentImageURL"
+                    data?.putExtra("imgURL",currentImageURL)
                 }
                 catch(e:Exception){
                     e.printStackTrace()

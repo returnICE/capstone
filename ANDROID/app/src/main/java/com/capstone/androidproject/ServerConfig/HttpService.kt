@@ -34,7 +34,7 @@ interface HttpService {
                                 @Field("originprice")originprice: String,
                                 @Field("saleprice")saleprice: String
     )
-            :Call<SignupResponse>
+            :Call<Success>
 
     @FormUrlEncoded
     @POST("/upload")
